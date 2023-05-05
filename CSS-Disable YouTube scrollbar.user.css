@@ -1,0 +1,9 @@
+/* ==UserStyle==
+@name        CSS-Disable YouTube scrollbar
+@description This is your new file, start writing code
+@match       *://*.youtube.com/*
+==/UserStyle== */
+/* Hide scrollbar for Chrome, Safari and Opera */
+::-webkit-scrollbar {
+  display: none;
+}
