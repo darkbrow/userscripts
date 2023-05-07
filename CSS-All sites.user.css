@@ -333,7 +333,7 @@
 
 pre, code, .blob-code, .blob-code-marker{
     font-family : 'Consolas', 'ui-monospace' !important;
-    font-size : 90%;
+    /* font-size : 90%; */
 }
 
 /* @font-face {
