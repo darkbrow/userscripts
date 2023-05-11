@@ -1,9 +1,11 @@
 // ==UserScript==
 // @name            pipKeyboardShortcut
+// @version         1.0.0
 // @description     Add keyboard shortcut to Youtube
-// @include         *://*/*
+// @match           *://*/*
 // @run-at          document-end
 // @grant           none
+// @inject-into     auto
 // @noframes
 // ==/UserScript==
 const video = document.querySelector('video');
@@ -25,4 +27,3 @@ document.body.addEventListener('keyup', e => {
     }
   }
 });
-
