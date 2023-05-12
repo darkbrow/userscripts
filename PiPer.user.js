@@ -1,9 +1,6 @@
 // ==UserScript==
 // @name         PiPer
-// @namespace    https://raw.githubusercontent.com/darkbrow/PiPer-js-only/main
-// @homepage     https://raw.githubusercontent.com/darkbrow/PiPer-js-only/main
 // @version      1.0.4.1
-// @encoding     utf-8
 // @description  Add Picture in Picture button on Youtube toolbar. And fix to show subtitle in PIP window. This script is blatantly copied from amarcu5's good safari extension PiPer(https://github.com/amarcu5/PiPer.git). I add file for support Naver Live. All other sites originally included were removed at this script, because most of them quite outdated and no longer work at this time.
 // @icon         https://raw.githubusercontent.com/darkbrow/PiPer-js-only/main/toolbar/icon.png
 // @author       amarcu5
@@ -13,9 +10,6 @@
 // @exclude      *://*.music.youtube.com/*
 // @downloadURL  https://raw.githubusercontent.com/darkbrow/PiPer-js-only/main/js-readable/PiPer.user.js
 // @updateURL    https://raw.githubusercontent.com/darkbrow/PiPer-js-only/main/js-readable/PiPer.user.js
-// @grant        GM.xmlHttpRequest
-// @connect      githubusercontent.com
-// @grant        GM_addStyle
 // @run-at       document-end
 // ==/UserScript==
 
@@ -23,6 +17,8 @@ var a;a||(a=!0,(()=>{// Input 0
 const BROWSER$$module$defines = 0;
 var module$defines = {};
 module$defines.BROWSER = BROWSER$$module$defines;
+// Input 1
+// Input 2
 const Browser$$module$common = {UNKNOWN:0, SAFARI:1, CHROME:2,};
 const getBrowser$$module$common = function() {
   if (BROWSER$$module$defines != Browser$$module$common.UNKNOWN) {
@@ -72,6 +68,7 @@ module$common.getBrowser = getBrowser$$module$common;
 module$common.getExtensionURL = getExtensionURL$$module$common;
 module$common.getResource = getResource$$module$common;
 module$common.setResource = setResource$$module$common;
+// Input 3
 const CHROME_PLAYING_PIP_ATTRIBUTE$$module$video = "data-playing-picture-in-picture";
 const eventListeners$$module$video = [];
 const togglePictureInPicture$$module$video = function(video) {
@@ -165,6 +162,7 @@ module$video.addVideoElementListeners = addVideoElementListeners$$module$video;
 module$video.removePictureInPictureEventListener = removePictureInPictureEventListener$$module$video;
 module$video.togglePictureInPicture = togglePictureInPicture$$module$video;
 module$video.videoPlayingPictureInPicture = videoPlayingPictureInPicture$$module$video;
+// Input 4
 const localizations$$module$localization = {};
 localizations$$module$localization["button-title"] = {"en":"Open Picture in Picture mode", "de":"Bild-in-Bild starten", "ko":"\ud654\uba74 \uc18d \ud654\uba74", "nl":"Beeld in beeld starten", "fr":"D\u00e9marrer Image dans l\u2019image",};
 const defaultLanguage$$module$localization = "en";
@@ -190,6 +188,7 @@ const localizedStringWithReplacements$$module$localization = function(key, repla
 var module$localization = {};
 module$localization.localizedString = localizedString$$module$localization;
 module$localization.localizedStringWithReplacements = localizedStringWithReplacements$$module$localization;
+// Input 5
 const TRACK_ID$$module$captions = "PiPer_track";
 let track$$module$captions = null;
 let captionsEnabled$$module$captions = false;
@@ -309,6 +308,7 @@ module$captions.disableCaptions = disableCaptions$$module$captions;
 module$captions.enableCaptions = enableCaptions$$module$captions;
 module$captions.processCaptions = processCaptions$$module$captions;
 module$captions.shouldProcessCaptions = shouldProcessCaptions$$module$captions;
+// Input 6
 const BUTTON_ID$$module$button = "PiPer_button";
 let button$$module$button = null;
 const addButton$$module$button = function(parent) {
@@ -375,6 +375,7 @@ var module$button = {};
 module$button.addButton = addButton$$module$button;
 module$button.checkButton = checkButton$$module$button;
 module$button.getButton = getButton$$module$button;
+// Input 7
 const domain$$module$resources$youtube = ["youtube", "youtu"];
 const resource$$module$resources$youtube = {buttonClassName:"ytp-button", buttonDidAppear:function() {
   const button = getButton$$module$button();
@@ -422,6 +423,7 @@ const resource$$module$resources$youtube = {buttonClassName:"ytp-button", button
 var module$resources$youtube = {};
 module$resources$youtube.domain = domain$$module$resources$youtube;
 module$resources$youtube.resource = resource$$module$resources$youtube;
+// Input 8
 const domain$$module$resources$vid = "vid";
 const resource$$module$resources$vid = {buttonInsertBefore:function(parent) {
   return parent.lastChild;
@@ -439,6 +441,7 @@ const resource$$module$resources$vid = {buttonInsertBefore:function(parent) {
 var module$resources$vid = {};
 module$resources$vid.domain = domain$$module$resources$vid;
 module$resources$vid.resource = resource$$module$resources$vid;
+// Input 9
 const domain$$module$resources$naver = "naver";
 const resource$$module$resources$naver = {buttonClassName:"control", buttonScale:0.7, buttonStyle:`
     /* Declaring CSS this way ensures it gets optimized when the extension is built */
@@ -459,6 +462,7 @@ const resource$$module$resources$naver = {buttonClassName:"control", buttonScale
 var module$resources$naver = {};
 module$resources$naver.domain = domain$$module$resources$naver;
 module$resources$naver.resource = resource$$module$resources$naver;
+// Input 10
 const initialiseCaches$$module$cache = function() {
   let uniqueIdCounter = 0;
   const uniqueId = function() {
@@ -490,6 +494,7 @@ const initialiseCaches$$module$cache = function() {
 };
 var module$cache = {};
 module$cache.initialiseCaches = initialiseCaches$$module$cache;
+// Input 11
 const resources$$module$resources$index = {};
 resources$$module$resources$index[domain$$module$resources$naver] = resource$$module$resources$naver;
 resources$$module$resources$index[domain$$module$resources$vid] = resource$$module$resources$vid;
@@ -497,6 +502,7 @@ resources$$module$resources$index["youtube"] = resource$$module$resources$youtub
 resources$$module$resources$index["youtu"] = resources$$module$resources$index["youtube"];
 var module$resources$index = {};
 module$resources$index.resources = resources$$module$resources$index;
+// Input 12
 const mutationObserver$$module$main = function() {
   const currentResource = getResource$$module$common();
   if (shouldProcessCaptions$$module$captions()) {
@@ -543,6 +549,8 @@ var a;a||(a=!0,(()=>{// Input 0
 const BROWSER$$module$defines = 0;
 var module$defines = {};
 module$defines.BROWSER = BROWSER$$module$defines;
+// Input 1
+// Input 2
 const Browser$$module$common = {UNKNOWN:0, SAFARI:1, CHROME:2,};
 const getBrowser$$module$common = function() {
   if (BROWSER$$module$defines != Browser$$module$common.UNKNOWN) {
@@ -593,6 +601,7 @@ module$common.getBrowser = getBrowser$$module$common;
 module$common.getExtensionURL = getExtensionURL$$module$common;
 module$common.getResource = getResource$$module$common;
 module$common.setResource = setResource$$module$common;
+// Input 3
 const CHROME_PLAYING_PIP_ATTRIBUTE$$module$video = "data-playing-picture-in-picture";
 const eventListeners$$module$video = [];
 const togglePictureInPicture$$module$video = function(video) {
@@ -686,6 +695,7 @@ module$video.addVideoElementListeners = addVideoElementListeners$$module$video;
 module$video.removePictureInPictureEventListener = removePictureInPictureEventListener$$module$video;
 module$video.togglePictureInPicture = togglePictureInPicture$$module$video;
 module$video.videoPlayingPictureInPicture = videoPlayingPictureInPicture$$module$video;
+// Input 4
 let activeVideo$$module$fix = null;
 let timeoutId$$module$fix = 0;
 let timeouts$$module$fix = {};
