@@ -2,7 +2,7 @@
 // @name         PiPer
 // @namespace    https://raw.githubusercontent.com/darkbrow/PiPer-js-only/main
 // @homepage     https://raw.githubusercontent.com/darkbrow/PiPer-js-only/main
-// @version      1.0.4
+// @version      1.0.4.1
 // @encoding     utf-8
 // @description  Add Picture in Picture button on Youtube toolbar. And fix to show subtitle in PIP window. This script is blatantly copied from amarcu5's good safari extension PiPer(https://github.com/amarcu5/PiPer.git). I add file for support Naver Live. All other sites originally included were removed at this script, because most of them quite outdated and no longer work at this time.
 // @icon         https://raw.githubusercontent.com/darkbrow/PiPer-js-only/main/toolbar/icon.png
@@ -11,9 +11,8 @@
 // @match        *://*.naver.com/*
 // @exclude      *://music.youtube.com/*
 // @exclude      *://*.music.youtube.com/*
-// @compatible   safari
-// @downloadURL  https://raw.githubusercontent.com/darkbrow/PiPer-js-only/main/js-readable/piper.js
-// @updateURL    https://raw.githubusercontent.com/darkbrow/PiPer-js-only/main/js-readable/piper.js
+// @downloadURL  https://raw.githubusercontent.com/darkbrow/PiPer-js-only/main/js-readable/PiPer.user.js
+// @updateURL    https://raw.githubusercontent.com/darkbrow/PiPer-js-only/main/js-readable/PiPer.user.js
 // @grant        GM.xmlHttpRequest
 // @connect      githubusercontent.com
 // @grant        GM_addStyle
@@ -21,29 +20,9 @@
 // ==/UserScript==
 
 var a;a||(a=!0,(()=>{// Input 0
-const LOGGING_LEVEL$$module$defines = 0;
 const BROWSER$$module$defines = 0;
 var module$defines = {};
 module$defines.BROWSER = BROWSER$$module$defines;
-module$defines.LOGGING_LEVEL = LOGGING_LEVEL$$module$defines;
-// Input 1
-const loggingPrefix$$module$logger = "[PiPer] ";
-const LoggingLevel$$module$logger = {ALL:0, TRACE:10, INFO:20, WARNING:30, ERROR:40,};
-const trace$$module$logger = LoggingLevel$$module$logger.TRACE >= LOGGING_LEVEL$$module$defines ? console.trace.bind(console) : function() {
-};
-const info$$module$logger = LoggingLevel$$module$logger.INFO >= LOGGING_LEVEL$$module$defines ? console.info.bind(console, loggingPrefix$$module$logger) : function() {
-};
-const warn$$module$logger = LoggingLevel$$module$logger.WARNING >= LOGGING_LEVEL$$module$defines ? console.warn.bind(console, loggingPrefix$$module$logger) : function() {
-};
-const error$$module$logger = LoggingLevel$$module$logger.ERROR >= LOGGING_LEVEL$$module$defines ? console.error.bind(console, loggingPrefix$$module$logger) : function() {
-};
-var module$logger = {};
-module$logger.LoggingLevel = LoggingLevel$$module$logger;
-module$logger.error = error$$module$logger;
-module$logger.info = info$$module$logger;
-module$logger.trace = trace$$module$logger;
-module$logger.warn = warn$$module$logger;
-// Input 2
 const Browser$$module$common = {UNKNOWN:0, SAFARI:1, CHROME:2,};
 const getBrowser$$module$common = function() {
   if (BROWSER$$module$defines != Browser$$module$common.UNKNOWN) {
@@ -77,10 +56,6 @@ const getExtensionURL$$module$common = function(path) {
   }
 };
 const bypassBackgroundTimerThrottling$$module$common = function() {
-  if (!currentResource$$module$common.captionElement) {
-    warn$$module$logger("Unnecessary bypassing of background timer throttling on page without caption support");
-  }
-  const request = new XMLHttpRequest();
   request.open("GET", getExtensionURL$$module$common("scripts/fix.js"));
   request.onload = function() {
     const script = document.createElement("script");
@@ -97,7 +72,6 @@ module$common.getBrowser = getBrowser$$module$common;
 module$common.getExtensionURL = getExtensionURL$$module$common;
 module$common.getResource = getResource$$module$common;
 module$common.setResource = setResource$$module$common;
-// Input 3
 const CHROME_PLAYING_PIP_ATTRIBUTE$$module$video = "data-playing-picture-in-picture";
 const eventListeners$$module$video = [];
 const togglePictureInPicture$$module$video = function(video) {
@@ -150,11 +124,6 @@ const dispatchPictureInPictureEvent$$module$video = function(video) {
     return;
   }
   const isPlayingPictureInPicture = videoPlayingPictureInPicture$$module$video(video);
-  if (isPlayingPictureInPicture) {
-    info$$module$logger("Video entering Picture in Picture mode");
-  } else {
-    info$$module$logger("Video leaving Picture in Picture mode");
-  }
   const eventListenersCopy = eventListeners$$module$video.slice();
   for (let listener; listener = eventListenersCopy.pop();) {
     listener(video, isPlayingPictureInPicture);
@@ -196,7 +165,6 @@ module$video.addVideoElementListeners = addVideoElementListeners$$module$video;
 module$video.removePictureInPictureEventListener = removePictureInPictureEventListener$$module$video;
 module$video.togglePictureInPicture = togglePictureInPicture$$module$video;
 module$video.videoPlayingPictureInPicture = videoPlayingPictureInPicture$$module$video;
-// Input 4
 const localizations$$module$localization = {};
 localizations$$module$localization["button-title"] = {"en":"Open Picture in Picture mode", "de":"Bild-in-Bild starten", "ko":"\ud654\uba74 \uc18d \ud654\uba74", "nl":"Beeld in beeld starten", "fr":"D\u00e9marrer Image dans l\u2019image",};
 const defaultLanguage$$module$localization = "en";
@@ -208,16 +176,12 @@ const localizedString$$module$localization = function(key, language = navigator.
       return string;
     }
   }
-  error$$module$logger(`No localized string found for key '${key}'`);
   return "";
 };
 const localizedStringWithReplacements$$module$localization = function(key, replacements, language) {
   let string = localizedString$$module$localization(key, language);
   for (let index = replacements.length; index--;) {
     let replacement = replacements[index];
-    if (/[^-_0-9a-zA-Z\/]/.test(replacement[0])) {
-      error$$module$logger(`Invalid characters used in localized string tag '${replacement[0]}'`);
-    }
     const regex = new RegExp(`\\\[${replacement[0]}\\\]`, "g");
     string = string.replace(regex, replacement[1]);
   }
@@ -226,7 +190,6 @@ const localizedStringWithReplacements$$module$localization = function(key, repla
 var module$localization = {};
 module$localization.localizedString = localizedString$$module$localization;
 module$localization.localizedStringWithReplacements = localizedStringWithReplacements$$module$localization;
-// Input 5
 const TRACK_ID$$module$captions = "PiPer_track";
 let track$$module$captions = null;
 let captionsEnabled$$module$captions = false;
@@ -238,7 +201,6 @@ const disableCaptions$$module$captions = function() {
   showingCaptions$$module$captions = false;
   processCaptions$$module$captions();
   removePictureInPictureEventListener$$module$video(pictureInPictureEventListener$$module$captions);
-  info$$module$logger("Closed caption support disabled");
 };
 const enableCaptions$$module$captions = function(ignoreNowPlayingCheck) {
   if (!getResource$$module$common().captionElement) {
@@ -246,7 +208,6 @@ const enableCaptions$$module$captions = function(ignoreNowPlayingCheck) {
   }
   captionsEnabled$$module$captions = true;
   addPictureInPictureEventListener$$module$video(pictureInPictureEventListener$$module$captions);
-  info$$module$logger("Closed caption support enabled");
   if (ignoreNowPlayingCheck) {
     return;
   }
@@ -265,11 +226,9 @@ const getCaptionTrack$$module$captions = function(video) {
   const allTracks = video.textTracks;
   for (let trackId = allTracks.length; trackId--;) {
     if (allTracks[trackId].label === TRACK_ID$$module$captions) {
-      info$$module$logger("Existing caption track found");
       return allTracks[trackId];
     }
   }
-  info$$module$logger("Caption track created");
   return video.addTextTrack("captions", TRACK_ID$$module$captions, "en");
 };
 const addVideoCaptionTracks$$module$captions = function() {
@@ -286,7 +245,6 @@ const pictureInPictureEventListener$$module$captions = function(video, isPlaying
   }
   lastUnprocessedCaption$$module$captions = "";
   processCaptions$$module$captions();
-  info$$module$logger(`Video presentation mode changed (showingCaptions: ${showingCaptions$$module$captions})`);
 };
 const removeCaptions$$module$captions = function(video, workaround = true) {
   while (track$$module$captions.activeCues.length) {
@@ -298,7 +256,6 @@ const removeCaptions$$module$captions = function(video, workaround = true) {
   }
 };
 const addCaption$$module$captions = function(video, caption) {
-  info$$module$logger(`Showing caption '${caption}'`);
   track$$module$captions.mode = "showing";
   track$$module$captions.addCue(new VTTCue(video.currentTime, video.currentTime + 60, caption));
   if (getBrowser$$module$common() == Browser$$module$common.SAFARI) {
@@ -352,7 +309,6 @@ module$captions.disableCaptions = disableCaptions$$module$captions;
 module$captions.enableCaptions = enableCaptions$$module$captions;
 module$captions.processCaptions = processCaptions$$module$captions;
 module$captions.shouldProcessCaptions = shouldProcessCaptions$$module$captions;
-// Input 6
 const BUTTON_ID$$module$button = "PiPer_button";
 let button$$module$button = null;
 const addButton$$module$button = function(parent) {
@@ -401,12 +357,10 @@ const addButton$$module$button = function(parent) {
       event.preventDefault();
       const video = getResource$$module$common().videoElement(true);
       if (!video) {
-        error$$module$logger("Unable to find video");
         return;
       }
       togglePictureInPicture$$module$video(video);
     });
-    info$$module$logger("Picture in Picture button created");
   }
   const referenceNode = getResource$$module$common().buttonInsertBefore ? getResource$$module$common().buttonInsertBefore(parent) : null;
   parent.insertBefore(button$$module$button, referenceNode);
@@ -421,7 +375,6 @@ var module$button = {};
 module$button.addButton = addButton$$module$button;
 module$button.checkButton = checkButton$$module$button;
 module$button.getButton = getButton$$module$button;
-// Input 7
 const domain$$module$resources$youtube = ["youtube", "youtu"];
 const resource$$module$resources$youtube = {buttonClassName:"ytp-button", buttonDidAppear:function() {
   const button = getButton$$module$button();
@@ -469,7 +422,6 @@ const resource$$module$resources$youtube = {buttonClassName:"ytp-button", button
 var module$resources$youtube = {};
 module$resources$youtube.domain = domain$$module$resources$youtube;
 module$resources$youtube.resource = resource$$module$resources$youtube;
-// Input 8
 const domain$$module$resources$vid = "vid";
 const resource$$module$resources$vid = {buttonInsertBefore:function(parent) {
   return parent.lastChild;
@@ -487,7 +439,6 @@ const resource$$module$resources$vid = {buttonInsertBefore:function(parent) {
 var module$resources$vid = {};
 module$resources$vid.domain = domain$$module$resources$vid;
 module$resources$vid.resource = resource$$module$resources$vid;
-// Input 9
 const domain$$module$resources$naver = "naver";
 const resource$$module$resources$naver = {buttonClassName:"control", buttonScale:0.7, buttonStyle:`
     /* Declaring CSS this way ensures it gets optimized when the extension is built */
@@ -508,7 +459,6 @@ const resource$$module$resources$naver = {buttonClassName:"control", buttonScale
 var module$resources$naver = {};
 module$resources$naver.domain = domain$$module$resources$naver;
 module$resources$naver.resource = resource$$module$resources$naver;
-// Input 10
 const initialiseCaches$$module$cache = function() {
   let uniqueIdCounter = 0;
   const uniqueId = function() {
@@ -540,7 +490,6 @@ const initialiseCaches$$module$cache = function() {
 };
 var module$cache = {};
 module$cache.initialiseCaches = initialiseCaches$$module$cache;
-// Input 11
 const resources$$module$resources$index = {};
 resources$$module$resources$index[domain$$module$resources$naver] = resource$$module$resources$naver;
 resources$$module$resources$index[domain$$module$resources$vid] = resource$$module$resources$vid;
@@ -548,7 +497,6 @@ resources$$module$resources$index["youtube"] = resource$$module$resources$youtub
 resources$$module$resources$index["youtu"] = resources$$module$resources$index["youtube"];
 var module$resources$index = {};
 module$resources$index.resources = resources$$module$resources$index;
-// Input 12
 const mutationObserver$$module$main = function() {
   const currentResource = getResource$$module$common();
   if (shouldProcessCaptions$$module$captions()) {
@@ -569,7 +517,6 @@ const mutationObserver$$module$main = function() {
     if (currentResource.buttonDidAppear) {
       currentResource.buttonDidAppear();
     }
-    info$$module$logger("Picture in Picture button added to webpage");
   }
 };
 const getCurrentDomainName$$module$main = function() {
@@ -581,7 +528,6 @@ const getCurrentDomainName$$module$main = function() {
 };
 const domainName$$module$main = getCurrentDomainName$$module$main();
 if (domainName$$module$main in resources$$module$resources$index) {
-  info$$module$logger(`Matched site ${domainName$$module$main} (${location})`);
   setResource$$module$common(resources$$module$resources$index[domainName$$module$main]);
   initialiseCaches$$module$cache();
   if (getBrowser$$module$common() == Browser$$module$common.SAFARI) {
@@ -594,29 +540,9 @@ if (domainName$$module$main in resources$$module$resources$index) {
 var module$main = {};
 })());
 var a;a||(a=!0,(()=>{// Input 0
-const LOGGING_LEVEL$$module$defines = 0;
 const BROWSER$$module$defines = 0;
 var module$defines = {};
 module$defines.BROWSER = BROWSER$$module$defines;
-module$defines.LOGGING_LEVEL = LOGGING_LEVEL$$module$defines;
-// Input 1
-const loggingPrefix$$module$logger = "[PiPer] ";
-const LoggingLevel$$module$logger = {ALL:0, TRACE:10, INFO:20, WARNING:30, ERROR:40,};
-const trace$$module$logger = LoggingLevel$$module$logger.TRACE >= LOGGING_LEVEL$$module$defines ? console.trace.bind(console) : function() {
-};
-const info$$module$logger = LoggingLevel$$module$logger.INFO >= LOGGING_LEVEL$$module$defines ? console.info.bind(console, loggingPrefix$$module$logger) : function() {
-};
-const warn$$module$logger = LoggingLevel$$module$logger.WARNING >= LOGGING_LEVEL$$module$defines ? console.warn.bind(console, loggingPrefix$$module$logger) : function() {
-};
-const error$$module$logger = LoggingLevel$$module$logger.ERROR >= LOGGING_LEVEL$$module$defines ? console.error.bind(console, loggingPrefix$$module$logger) : function() {
-};
-var module$logger = {};
-module$logger.LoggingLevel = LoggingLevel$$module$logger;
-module$logger.error = error$$module$logger;
-module$logger.info = info$$module$logger;
-module$logger.trace = trace$$module$logger;
-module$logger.warn = warn$$module$logger;
-// Input 2
 const Browser$$module$common = {UNKNOWN:0, SAFARI:1, CHROME:2,};
 const getBrowser$$module$common = function() {
   if (BROWSER$$module$defines != Browser$$module$common.UNKNOWN) {
@@ -650,9 +576,6 @@ const getExtensionURL$$module$common = function(path) {
   }
 };
 const bypassBackgroundTimerThrottling$$module$common = function() {
-  if (!currentResource$$module$common.captionElement) {
-    warn$$module$logger("Unnecessary bypassing of background timer throttling on page without caption support");
-  }
   const request = new XMLHttpRequest();
   request.open("GET", getExtensionURL$$module$common("scripts/fix.js"));
   request.onload = function() {
@@ -670,7 +593,6 @@ module$common.getBrowser = getBrowser$$module$common;
 module$common.getExtensionURL = getExtensionURL$$module$common;
 module$common.getResource = getResource$$module$common;
 module$common.setResource = setResource$$module$common;
-// Input 3
 const CHROME_PLAYING_PIP_ATTRIBUTE$$module$video = "data-playing-picture-in-picture";
 const eventListeners$$module$video = [];
 const togglePictureInPicture$$module$video = function(video) {
@@ -723,11 +645,6 @@ const dispatchPictureInPictureEvent$$module$video = function(video) {
     return;
   }
   const isPlayingPictureInPicture = videoPlayingPictureInPicture$$module$video(video);
-  if (isPlayingPictureInPicture) {
-    info$$module$logger("Video entering Picture in Picture mode");
-  } else {
-    info$$module$logger("Video leaving Picture in Picture mode");
-  }
   const eventListenersCopy = eventListeners$$module$video.slice();
   for (let listener; listener = eventListenersCopy.pop();) {
     listener(video, isPlayingPictureInPicture);
@@ -769,7 +686,6 @@ module$video.addVideoElementListeners = addVideoElementListeners$$module$video;
 module$video.removePictureInPictureEventListener = removePictureInPictureEventListener$$module$video;
 module$video.togglePictureInPicture = togglePictureInPicture$$module$video;
 module$video.videoPlayingPictureInPicture = videoPlayingPictureInPicture$$module$video;
-// Input 4
 let activeVideo$$module$fix = null;
 let timeoutId$$module$fix = 0;
 let timeouts$$module$fix = {};
@@ -845,9 +761,7 @@ const bypassBackgroundTimerThrottling$$module$fix = function() {
     window.setTimeout = unthrottledSetTimeout$$module$fix;
     window.clearTimeout = unthrottledClearTimeout$$module$fix;
     activeVideo$$module$fix.addEventListener("timeupdate", callAnimationFrameRequestsAndTimeouts$$module$fix);
-    info$$module$logger("Bypassing background timer throttling");
   } else if (activeVideo$$module$fix) {
-    info$$module$logger("Finished bypassing background timer throttling");
     window.setTimeout = originalSetTimeout$$module$fix;
     window.clearTimeout = originalClearTimeout$$module$fix;
     activeVideo$$module$fix.removeEventListener("timeupdate", callAnimationFrameRequestsAndTimeouts$$module$fix);
