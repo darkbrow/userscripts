@@ -169,153 +169,13 @@
     font-style: normal;
 }
 
-/* @font-face { */
-/*   font-family: 'Jua'; */
-/*   font-style: normal; */
-/*   font-weight: 400; */
-/*   font-display: swap; */
-/*   src: url(https://fonts.gstatic.com/s/jua/v13/co3KmW9ljjAjcw.ttf) format('truetype'); */
-/* } */
-/* @font-face { */
-/*   font-family: 'Noto Sans JP'; */
-/*   font-style: normal; */
-/*   font-weight: 400; */
-/*   font-display: swap; */
-/*   src: url(https://fonts.gstatic.com/s/notosansjp/v42/-F62fjtqLzI2JPCgQBnw7HFowA.otf) format('opentype'); */
-/* } */
-/* @font-face { */
-/*   font-family: 'Noto Sans KR'; */
-/*   font-style: normal; */
-/*   font-weight: 100; */
-/*   font-display: swap; */
-/*   src: url(https://fonts.gstatic.com/s/notosanskr/v27/Pby6FmXiEBPT4ITbgNA5CgmOsn7u.otf) format('opentype'); */
-/* } */
-/* @font-face { */
-/*   font-family: 'Noto Sans KR'; */
-/*   font-style: normal; */
-/*   font-weight: 300; */
-/*   font-display: swap; */
-/*   src: url(https://fonts.gstatic.com/s/notosanskr/v27/Pby7FmXiEBPT4ITbgNA5CgmOelzI7g.otf) format('opentype'); */
-/* } */
-/* @font-face { */
-/*   font-family: 'Noto Sans KR'; */
-/*   font-style: normal; */
-/*   font-weight: 400; */
-/*   font-display: swap; */
-/*   src: url(https://fonts.gstatic.com/s/notosanskr/v27/PbykFmXiEBPT4ITbgNA5Cgm20A.otf) format('opentype'); */
-/* } */
-/* @font-face { */
-/*   font-family: 'Noto Sans KR'; */
-/*   font-style: normal; */
-/*   font-weight: 500; */
-/*   font-display: swap; */
-/*   src: url(https://fonts.gstatic.com/s/notosanskr/v27/Pby7FmXiEBPT4ITbgNA5CgmOIl3I7g.otf) format('opentype'); */
-/* } */
-/* @font-face { */
-/*   font-family: 'Noto Sans KR'; */
-/*   font-style: normal; */
-/*   font-weight: 700; */
-/*   font-display: swap; */
-/*   src: url(https://fonts.gstatic.com/s/notosanskr/v27/Pby7FmXiEBPT4ITbgNA5CgmOalvI7g.otf) format('opentype'); */
-/* } */
-/* @font-face { */
-/*   font-family: 'Noto Sans KR'; */
-/*   font-style: normal; */
-/*   font-weight: 900; */
-/*   font-display: swap; */
-/*   src: url(https://fonts.gstatic.com/s/notosanskr/v27/Pby7FmXiEBPT4ITbgNA5CgmOUlnI7g.otf) format('opentype'); */
-/* } */
-/* @font-face { */
-/*   font-family: 'Noto Serif JP'; */
-/*   font-style: normal; */
-/*   font-weight: 400; */
-/*   font-display: swap; */
-/*   src: url(https://fonts.gstatic.com/s/notoserifjp/v21/xn7mYHs72GKoTvER4Gn3b5eMXNg.otf) format('opentype'); */
-/* } */
-/* @font-face { */
-/*   font-family: 'Noto Serif KR'; */
-/*   font-style: normal; */
-/*   font-weight: 200; */
-/*   font-display: swap; */
-/*   src: url(https://fonts.gstatic.com/s/notoserifkr/v20/3JnmSDn90Gmq2mr3blnHaTZXTihC8O0.otf) format('opentype'); */
-/* } */
-/* @font-face { */
-/*   font-family: 'Noto Serif KR'; */
-/*   font-style: normal; */
-/*   font-weight: 300; */
-/*   font-display: swap; */
-/*   src: url(https://fonts.gstatic.com/s/notoserifkr/v20/3JnmSDn90Gmq2mr3blnHaTZXTkxB8O0.otf) format('opentype'); */
-/* } */
-/* @font-face { */
-/*   font-family: 'Noto Serif KR'; */
-/*   font-style: normal; */
-/*   font-weight: 400; */
-/*   font-display: swap; */
-/*   src: url(https://fonts.gstatic.com/s/notoserifkr/v20/3Jn7SDn90Gmq2mr3blnHaTZXduY.otf) format('opentype'); */
-/* } */
-/* @font-face { */
-/*   font-family: 'Noto Serif KR'; */
-/*   font-style: normal; */
-/*   font-weight: 500; */
-/*   font-display: swap; */
-/*   src: url(https://fonts.gstatic.com/s/notoserifkr/v20/3JnmSDn90Gmq2mr3blnHaTZXThRA8O0.otf) format('opentype'); */
-/* } */
-/* @font-face { */
-/*   font-family: 'Noto Serif KR'; */
-/*   font-style: normal; */
-/*   font-weight: 600; */
-/*   font-display: swap; */
-/*   src: url(https://fonts.gstatic.com/s/notoserifkr/v20/3JnmSDn90Gmq2mr3blnHaTZXTjhH8O0.otf) format('opentype'); */
-/* } */
-/* @font-face { */
-/*   font-family: 'Noto Serif KR'; */
-/*   font-style: normal; */
-/*   font-weight: 700; */
-/*   font-display: swap; */
-/*   src: url(https://fonts.gstatic.com/s/notoserifkr/v20/3JnmSDn90Gmq2mr3blnHaTZXTlxG8O0.otf) format('opentype'); */
-/* } */
-/* @font-face { */
-/*   font-family: 'Noto Serif KR'; */
-/*   font-style: normal; */
-/*   font-weight: 900; */
-/*   font-display: swap; */
-/*   src: url(https://fonts.gstatic.com/s/notoserifkr/v20/3JnmSDn90Gmq2mr3blnHaTZXTmRE8O0.otf) format('opentype'); */
-/* } */
-/* @font-face { */
-/*   font-family: 'NanumMyeongjo'; */
-/*   font-style: normal; */
-/*   font-weight: 500; */
-/*   font-display: swap; */
-/*   src: url(https://fonts.gstatic.com/s/notoserifkr/v20/3JnmSDn90Gmq2mr3blnHaTZXThRA8O0.otf) format('opentype'); */
-/* } */
-/* @font-face { */
-/*   font-family: 'NanumMyeongjo'; */
-/*   font-style: normal; */
-/*   font-weight: 600; */
-/*   font-display: swap; */
-/*   src: url(https://fonts.gstatic.com/s/notoserifkr/v20/3JnmSDn90Gmq2mr3blnHaTZXTjhH8O0.otf) format('opentype'); */
-/* } */
-/* @font-face { */
-/*   font-family: 'NanumMyeongjo'; */
-/*   font-style: normal; */
-/*   font-weight: 700; */
-/*   font-display: swap; */
-/*   src: url(https://fonts.gstatic.com/s/notoserifkr/v20/3JnmSDn90Gmq2mr3blnHaTZXTlxG8O0.otf) format('opentype'); */
-/* } */
-/* @font-face { */
-/*   font-family: 'NanumMyeongjo'; */
-/*   font-style: normal; */
-/*   font-weight: 900; */
-/*   font-display: swap; */
-/*   src: url(https://fonts.gstatic.com/s/notoserifkr/v20/3JnmSDn90Gmq2mr3blnHaTZXTmRE8O0.otf) format('opentype'); */
-/* } */
-/* @font-face { */
-/*   font-family: 'Yeon Sung'; */
-/*   font-style: normal; */
-/*   font-weight: 400; */
-/*   font-display: swap; */
-/*   src: url(https://fonts.gstatic.com/s/yeonsung/v20/QldMNTpbohAGtsJvUn6xSQ.ttf) format('truetype'); */
-/* } */
+@font-face {
+  font-family: 'YouTube Noto';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('https://raw.githubusercontent.com/darkbrow/webfonts/main/woff2/NotoSansKR-Regular.woff2') format('woff2');
+}
 
 @font-face {
   font-family: 'Monaco';
@@ -333,21 +193,5 @@
 
 pre, code, .blob-code, .blob-code-marker{
     font-family : 'Consolas', 'ui-monospace' !important;
-    /* font-size : 90%; */
-}
-
-/* @font-face {
-  font-family: 'YouTube Noto';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('https://fonts.gstatic.com/s/notosanskr/v27/PbykFmXiEBPT4ITbgNA5Cgm20A.otf') format('opentype');
-} */
-
-@font-face {
-  font-family: 'YouTube Noto';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('https://raw.githubusercontent.com/darkbrow/webfonts/main/woff2/NotoSansKR-Regular.woff2') format('woff2');
+    font-size : 90%;
 }

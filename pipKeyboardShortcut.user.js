@@ -2,9 +2,10 @@
 // @name            pipKeyboardShortcut
 // @version         1.0.0
 // @description     Add keyboard shortcut to Youtube
-// @match           https://*.youtube.com/*
-// @match           https://youtube.com/*
-// @match           https://youtu.be/*
+// @match           *://*.youtube.com/*
+// @match           *://youtu.be/*
+// @match           *://dprime.kr/*
+// @match           *://clien.net/*
 // @run-at          document-end
 // @grant           none
 // @inject-into     auto
