@@ -4,18 +4,20 @@
 // @namespace   https://greasyfork.org/en/users/594496-divided-by
 // @description Cleans URLs from various popular sites.
 // @description:ja Cleans URLs from various popular sites.
-// @version     4.1.4
+// @version     4.1.7
 // @license     GPL version 3 or any later version; http://www.gnu.org/copyleft/gpl.html
 // @contributionURL https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=dividedbyerror@gmail.com&item_name=Greasy+Fork+Donation
 // @contributionAmount $1
 // @include     https://www.newegg.com/*
 // @include     https://www.newegg.ca/*
-// @include     https://www.bing.com/*
+// @include     /^https:\/\/[a-z]+\.bing\.(?:[a-z]{2,3}|[a-z]{2}\.[a-z]{2})\/.*$/
 // @include     https://www.youtube.com/*
 // @include     https://www.imdb.com/*
 // @include     https://www.facebook.com/*
 // @include     https://disqus.com/embed/comments/*
 // @include     https://www.target.com/*
+// @include     https://www.linkedin.com/*
+// @include     https://www.etsy.com/*
 // @include     /^https:\/\/[a-z]+\.amazon\.(?:[a-z]{2,3}|[a-z]{2}\.[a-z]{2})\/.*$/
 // @include     /^https?:\/\/[a-z]+\.google\.(?:[a-z]{2,3}|[a-z]{2}\.[a-z]{2})\/.*$/
 // @include     /^https:\/\/[a-z.]+\.ebay(desc)?(\.[a-z]{2,3})?\.[a-z]{2,}\/.*$/
@@ -30,7 +32,7 @@
 // @exclude     https://calendar.google.com/*
 // @exclude     https://docs.google.com/spreadsheets/*
 // @exclude     https://takeout.google.com/*
-// @run-at      document-end
+// @run-at      document-idle
 
 // ==/UserScript==
 
@@ -47,7 +49,7 @@
   const amazon = /^[a-z]+\.amazon\.(?:[a-z]{2,3}|[a-z]{2}\.[a-z]{2})$/;
   const google = /^[a-z]+\.google\.(?:[a-z]{2,3}|[a-z]{2}\.[a-z]{2})(\.[a-z]{2,})?$/i;
   const target = /^[a-z]+\.target\.com?(\.[a-z]{2,3})?$/;
-  const bing = /^[a-z]+\.target\.com?(\.[a-z]{2,3})?$/;
+  const bing = /^[a-z]+\.bing\.(?:[a-z]{2,3}|[a-z]{2}\.[a-z]{2})$/;
 
   const amazonParams = /&(crid|sprefix|ref|th|url|ie|pf_rd_[a-z]|bbn|rw_html_to_wsrp|ref_)(=[^&#]*)?($|&)/g;
   const neweggParams = /&(cm_sp|icid|ignorebbr)(=[^&#]*)?($|&)/g;
@@ -59,13 +61,27 @@
   const targetParams = /&(lnk|tref|searchTermRaw)(=[^&#]*)?($|&)/g;
   const facebookParams = /&(set)(=[^&#]*)?($|&)/g;
   const googleParams = /(?:&|^)(uact|iflsig|sxsrf|ved|source(id)?|s?ei|tab|tbo|h[ls]|authuser|n?um|ie|aqs|as_qdr|bav|bi[wh]|bs|bvm|cad|channel|complete|cp|s?client|d[pc]r|e(ch|msg|s_sm)|g(fe|ws)_rd|gpsrc|noj|btnG|o[eq]|p(si|bx|f|q)|rct|rlz|site|spell|tbas|usg|xhr|gs_[a-z]+)(=[^&#]*)?(?=$|&)/g;
+  const linkedinParams = /&(eBP|refId|trackingId|trk|flagship3_search_srp_jobs|lipi|lici)(=[^&#]*)?($|&)/g;
+  const etsyParams = /&(click_key|click_sum|ref|pro|frs|ga_order|ga_search_type|ga_view_type|ga_search_query|sts|organic_search_click|plkey)(=[^&#]*)?($|&)/g;
 
   /*
    * Main
    */
 
-  if (currHost === "www.bing.com") {
+  if (bing.test(currHost)) {
     setCurrUrl(cleanBing(currSearch));
+    cleanLinks(parserAll);
+    return;
+  }
+
+  if (currHost == "www.linkedin.com") {
+    setCurrUrl(cleanLinkedin(currSearch));
+    cleanLinks(parserAll);
+    return;
+  }
+
+  if (currHost == "www.etsy.com") {
+    setCurrUrl(cleanEtsy(currSearch));
     cleanLinks(parserAll);
     return;
   }
@@ -528,7 +544,22 @@
   }
 
   function cleanBing(url) {
-    return url.replace("?", "?&").replace(bingParams, "").replace("&", "");
+    return url.replace("?", "?&").replace(bingParams, "").replace("&", "").replace(/\?$/, "");
+  }
+
+  function cleanLinkedin(url) {
+    return url.replace("?", "?&").replace(linkedinParams, "").replace("&", "");
+  }
+
+  function cleanEtsy(url) {
+    return url.replace("?", "?&").replace(etsyParams, "").replace("&", "");
+  }
+
+  function cleanTwitterParams(url) {
+    return url
+      .replace("?", "?&")
+      .replace(twitterParams, "")
+      .replace("&", "");
   }
 
   function cleanYoutube(url) {
@@ -586,13 +617,6 @@
   function cleanAmazonItemdp(a) {
     let item = a.pathname.match(/\/dp(\/[A-Z0-9]{10})/)[1];
     return a.origin + "/dp" + item + a.hash;
-  }
-
-  function cleanTwitterParams(url) {
-    return url
-      .replace("?", "?&")
-      .replace(twitterParams, "")
-      .replace("&", "");
   }
 
   function cleanEbayItem(a) {

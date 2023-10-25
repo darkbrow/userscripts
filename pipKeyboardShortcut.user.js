@@ -6,11 +6,14 @@
 // @match           *://youtu.be/*
 // @match           *://dprime.kr/*
 // @match           *://clien.net/*
+// @match           *://*.coupangplay.com/*
+// @match           *://*.coupangstreaming.com/*
 // @run-at          document-end
 // @grant           none
 // @inject-into     auto
 // @noframes
 // ==/UserScript==
+//var video = document.getElementsByTagName('video')
 const video = document.querySelector('video');
 
 function stopPropagation(event) {
