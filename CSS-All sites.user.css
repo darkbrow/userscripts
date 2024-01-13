@@ -4,8 +4,18 @@
 @match       <all_urls>
 ==/UserStyle== */
 @font-face {
+    font-family : 'Apple SD Gothic Neo';
+    src : local('-apple-system'), local('Apple SD Gothic Neo'), local('ui-sans-serif');
+}
+
+@font-face {
+    font-family : 'Arial';
+    src : local('-apple-system'), local('Apple SD Gothic Neo'), local('ui-sans-serif');
+}
+
+@font-face {
     font-family : 'AppleGothic';
-    src : local('Apple SD Gothic Neo'), local('ui-sans-serif');
+    src : local('-apple-system'), local('Apple SD Gothic Neo'), local('ui-sans-serif');
 }
 
 @font-face {
@@ -38,12 +48,12 @@
 
 @font-face {
     font-family : 'Dotum';
-    src : local('Apple SD Gothic Neo'), local('ui-sans-serif');
+    src : local('-apple-system'), local('Apple SD Gothic Neo'), local('ui-sans-serif');
 }
 
 @font-face {
     font-family : '돋움';
-    src : local('Apple SD Gothic Neo'), local('ui-sans-serif');
+    src : local('-apple-system'), local('Apple SD Gothic Neo'), local('ui-sans-serif');
 }
 
 @font-face {
@@ -108,63 +118,63 @@
 
 @font-face {
     font-family: '맑은고딕 Semilight';
-    src: local('AppleSDGothicNeo-Light'), local('ui-sans-serif');
+    src: local('-apple-system'), local('AppleSDGothicNeo-Light'), local('ui-sans-serif');
     font-weight: light;
     font-style: normal;
 }
 
 @font-face {
     font-family: '맑은고딕';
-    src: local('AppleSDGothicNeo-Medium'), local('ui-sans-serif');
+    src: local('-apple-system'), local('AppleSDGothicNeo-Medium'), local('ui-sans-serif');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: '맑은 고딕';
-    src: local('AppleSDGothicNeo-Bold'), local('ui-sans-serif');
+    src: local('-apple-system'), local('AppleSDGothicNeo-Bold'), local('ui-sans-serif');
     font-weight: bold;
     font-style: normal;
 }
 
 @font-face {
     font-family: '맑은 고딕 Semilight';
-    src: local('AppleSDGothicNeo-Light'), local('ui-sans-serif');
+    src: local('-apple-system'), local('AppleSDGothicNeo-Light'), local('ui-sans-serif');
     font-weight: light;
     font-style: normal;
 }
 
 @font-face {
     font-family: '맑은 고딕';
-    src: local('AppleSDGothicNeo-Medium'), local('ui-sans-serif');
+    src: local('-apple-system'), local('AppleSDGothicNeo-Medium'), local('ui-sans-serif');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: '맑은 고딕';
-    src: local('AppleSDGothicNeo-Bold'), local('ui-sans-serif');
+    src: local('-apple-system'), local('AppleSDGothicNeo-Bold'), local('ui-sans-serif');
     font-weight: bold;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Malgun Gothic Semilight';
-    src: local('AppleSDGothicNeo-Light'), local('ui-sans-serif');
+    src: local('-apple-system'), local('AppleSDGothicNeo-Light'), local('ui-sans-serif');
     font-weight: light;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Malgun Gothic';
-    src: local('AppleSDGothicNeo-Medium'), local('ui-sans-serif');
+    src: local('-apple-system'), local('AppleSDGothicNeo-Medium'), local('ui-sans-serif');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Malgun Gothic';
-    src: local('AppleSDGothicNeo-Bold'), local('ui-sans-serif');
+    src: local('-apple-system'), local('AppleSDGothicNeo-Bold'), local('ui-sans-serif');
     font-weight: bold;
     font-style: normal;
 }

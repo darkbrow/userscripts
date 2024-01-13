@@ -4,8 +4,10 @@
 // @description  Add Picture in Picture button on Youtube toolbar. And fix to show subtitle in PIP window. This script is blatantly copied from amarcu5's good safari extension PiPer(https://github.com/amarcu5/PiPer.git). I add file for support Naver Live. All other sites originally included were removed at this script, because most of them quite outdated and no longer work at this time.
 // @icon         https://raw.githubusercontent.com/darkbrow/PiPer-js-only/main/toolbar/icon.png
 // @author       amarcu5
-// @match        *://*.youtube.com/*
-// @match        *://*.naver.com/*
+// @match        https://www.youtube.com/*
+// @match        https://youtube.com/*
+// @match        https://youtu.be/*
+// @match        https://*.naver.com/*
 // @exclude      *://music.youtube.com/*
 // @exclude      *://*.music.youtube.com/*
 // @downloadURL  https://raw.githubusercontent.com/darkbrow/PiPer-js-only/main/js-readable/PiPer.user.js
