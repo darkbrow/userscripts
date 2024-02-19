@@ -5,6 +5,7 @@
 // @icon         https://raw.githubusercontent.com/darkbrow/PiPer-js-only/main/toolbar/icon.png
 // @author       amarcu5
 // @match        https://www.youtube.com/*
+// @match        https://m.youtube.com/*
 // @match        https://youtube.com/*
 // @match        https://youtu.be/*
 // @match        https://*.naver.com/*
@@ -453,7 +454,7 @@ const resource$$module$resources$naver = {buttonClassName:"control", buttonScale
     background-color: transparent;
     border-style: none;
   `, buttonHoverStyle:`opacity: 1 !important`, buttonParent:function() {
-  var naverVidElements = [document.querySelector(".ControlBox_comp_control_box__zduPu .ControlBox_view_control_group__1DCTL"), document.querySelector(".VideoControlBox_view_control_group__Gls_j"), document.querySelector(".rmc_control_right"), document.querySelector(".pzp-pc__bottom-buttons-right"),];
+  var naverVidElements = [document.querySelector(".ControlBox_comp_control_box__zduPu .ControlBox_view_control_group__1DCTL"), document.querySelector(".VideoControlBox_view_control_group__Gls_j"), document.querySelector(".rmc_control_right"), document.querySelector(".pzp-pc__bottom-buttons-right"),document.querySelector(".VideoControlBox_comp_control_box__1q8zu .VideoControlBox_is_active__3pOxT .VideoControlBox_type_mobile_view__1j2a4"),];
   var naverVidElement = naverVidElements.findIndex(function(el) {
     return el !== null;
   });
